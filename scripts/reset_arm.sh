@@ -1,0 +1,1 @@
+python scripts/_reset_arm.py
