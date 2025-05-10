@@ -156,8 +156,8 @@ def deploy_data(args, ros_operator, save_episode=True):
     os.makedirs(target_save_path)
 
     actions = load_robotwin_hdf5_joint(load_data_path)
-    actions[:, 6] = actions[:, 6] * 0.88 -0.22
-    actions[:, 13] = actions[:, 13] * 0.88 -0.22
+    actions[:, 6] = actions[:, 6] * 0.88 - 0.22
+    actions[:, 13] = actions[:, 13] * 0.88 - 0.22
     
     t = 0
     rate = rospy.Rate(args.publish_rate)
