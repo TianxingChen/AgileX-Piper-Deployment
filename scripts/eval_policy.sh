@@ -6,6 +6,7 @@ model_name=${2}
 checkpoint_id=${3}
 seed=0
 gpu_id=${4}
+port=9403
 
 DEBUG=False
 export CUDA_VISIBLE_DEVICES=${gpu_id}
@@ -19,4 +20,5 @@ python script/eval_policy_server.py --config RoboTwin/policy/$policy_name/deploy
     --setting ${model_name} \
     --seed ${seed} \
     --checkpoint_id ${checkpoint_id} \
-    --policy_name ${policy_name}
+    --policy_name ${policy_name} \
+    --port $port

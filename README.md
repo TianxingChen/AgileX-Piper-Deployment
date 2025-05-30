@@ -27,3 +27,13 @@ bash scripts/reset_arm.sh
 # 开启数据采集，数据会存储到`real_data/${task_name}/${setting}`下
 bash scripts/collect_robotwin.sh ${task_name} ${setting} ${st_idx}
 ```
+
+# 连接远程服务器进行推理服务
+```
+# 连接远程服务器，需要修改对应脚本，默认端口为9403
+bash scripts/connect.sh 
+# 在远程服务器运行`eval_policy.sh`，开启推理服务，具体算法需要对应修改端口与部署代码，端口需要与上保持一致
+bash scripts/eval_policy.sh
+# 在本地运行部署代码，这个代码会实现与远程服务器的通信
+bash deploy_policy.py
+```

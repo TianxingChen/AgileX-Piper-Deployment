@@ -77,7 +77,7 @@ def main(usr_args):
     seed = usr_args['seed']
 
     model = get_model(usr_args)
-    eval_policy(policy_name, model)
+    eval_policy(policy_name, model, port=usr_args['port'])
     
 
 def eval_policy(policy_name, model, host='0.0.0.0', port=9403):
