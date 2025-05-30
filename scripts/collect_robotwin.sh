@@ -1,8 +1,8 @@
 #!/bin/bash
 
-task_name=dual_bottles_pick_easy
-setting=piper+piper-m0_b0_l0_h0_c0_D435
-idx=${1}
+task_name=${1}
+setting=${2}
+idx=${3}
 
 while true; do
     if [ "$idx" -eq -1 ]; then
@@ -12,7 +12,7 @@ while true; do
     
     while true; do
         bash scripts/reset_arm.sh
-        bash scripts/replay_robotwin.sh ${task_name} ${setting} ${idx}
+        bash scripts/preview_robotwin_traj.sh ${task_name} ${setting} ${idx}
         
         echo "按下回车继续，输入0重新运行reset_arm.sh和replay_robotwin.sh"
         read input
@@ -24,8 +24,10 @@ while true; do
     done
 
     bash scripts/reset_arm.sh
-    python scripts/_collect_real_world_robotwin.py --task_name=${task_name} --setting=${setting} --idx=${idx}
-    python scripts/_reset_arm_sleep.py
+    
+    python scripts/_replay_robotwin_collect.py --task_name=${task_name} --setting=${setting} --idx=${idx}
+    echo "reset"
+    python scripts/_reset_arm.py 1
 
     idx=$((idx + 1))
     echo "当前idx为: $idx"

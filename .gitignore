@@ -1,2 +1,3 @@
 real_data/*
-RoboTwin_Data/*
+RoboTwin/*
+**/__pycache__/

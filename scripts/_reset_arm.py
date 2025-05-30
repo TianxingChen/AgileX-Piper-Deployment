@@ -10,6 +10,7 @@ from cv_bridge import CvBridge
 from std_msgs.msg import Header
 from sensor_msgs.msg import Image, JointState
 from geometry_msgs.msg import Twist
+import time
 
 def main(args):
     rospy.init_node("replay_node")
@@ -49,6 +50,8 @@ def main(args):
         i += 1
         rate.sleep() 
     
+    if args.sleep:
+        time.sleep(1)
     joint_state_msg.position =  [0, 0, 0, 0, 0, 0, 0.66]
     master_arm_left_publisher.publish(joint_state_msg)
 
@@ -98,7 +101,8 @@ if __name__ == '__main__':
                         default=30, required=False)
     
     parser.add_argument('--only_pub_master', action='store_true', help='only_pub_master',required=False)
-
+    parser.add_argument('--sleep', action='store', type=bool, help='sleep',
+                        default=False, required=False)
     args = parser.parse_args()
     main(args)
     # python collect_data.py --max_timesteps 500 --is_compress --episode_idx 0 
